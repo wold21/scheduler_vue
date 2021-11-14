@@ -1,6 +1,7 @@
 <template>
 <div class="container">
     <Header title="Task Tracker"/>
+    <AddTask @add-task="addTask"/>
     <Tasks @toggle-reminder="reminderSwitch" @delete-task="deleteTask" :tasks="tasks"/>
 </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Tasks
+    Tasks,
+    AddTask
   },
   data(){
     return {
@@ -21,15 +24,19 @@ export default {
     }
   },
   methods : {
+    addTask(task){
+      console.log("main", task)
+      this.tasks = [...this.tasks, task]
+    },
     deleteTask(id){
       if(confirm('Are you sure?')){
         this.tasks = this.tasks.filter((task) => task.id !== id)
       }
     },
     reminderSwitch(id){
-        this.tasks = this.tasks.map((task) => task.id === id ?{
-          ...task, reminder : !task.reminder} : task)     
-        }
+      this.tasks = this.tasks.map((task) => task.id === id ?{
+        ...task, reminder : !task.reminder} : task)     
+      }
   },
   created (){
     this.tasks = [
