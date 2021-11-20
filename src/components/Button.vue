@@ -11,11 +11,7 @@ export default {
     },
     methods : {
         onClick() {
-<<<<<<< HEAD
             this.$emit('btn-click')
-=======
-             this.$emit('btn-click')
->>>>>>> 37e3929aec2cdb1b121746b6b09575c58eec9643
         }
     }
 
